@@ -3,11 +3,13 @@ $(handleClick)
 //define buttonHandler
 function handleClick() {
   let $button = $("#click-me")
+
   $button.click(function(){
     $button.hide()
     getLocation()
   })
 }
+
 
 //search the users locations
 function getLocation(){
@@ -35,7 +37,7 @@ function getCoordsAndEvents(data){
 
 //find events and render
 function renderEvents(data){
-  
+
   let eventList = $(".events-list")
   eventList.html('')
 
@@ -46,9 +48,8 @@ function renderEvents(data){
     let calendar_day = date_time.toDateString()
     let event_time = date_time.toTimeString().split(' ')[0]
     let city_name = event.city_name
-    let country = event.country_name
     let url = event.url
-    eventList.append(`<li class='collection-item'>Title: ${title}<ul class=inner>Venue: ${venue}</ul><ul class=inner>Time: ${calendar_day} ${event_time}</ul><ul class=inner>City: ${city_name}</ul><ul class=inner >Country: ${country}</ul><ul><a href=${url} target="_blank">Link to Event</a></ul></li>`)
+    eventList.append(`<div class='ba b--dotted bw2 event'><ul class='collection-item'><li>Title: ${title}</li><li>Venue: ${venue}</li><li>Time: ${calendar_day} ${event_time}</li><li>City: ${city_name}</li><li><a href=${url} target="_blank">Link to Event</a></li></ul></div>`)
   }
   JSON.parse(data).events.event.forEach(renderEvent)
 }
