@@ -31,17 +31,18 @@ function getCoordsAndEvents(data){
 
   $.ajax({
     url: `${URL}${lat},${lng}${CRITERIA}${apiKeys.eventful_api_key}`,
-    success: renderEvents
+    success: parseEvents
   })
 }
 
 //find events and render
-function renderEvents(data){
+function parseEvents(data){
 
-  let eventList = $(".events-list")
-  eventList.html('')
+  let eventList = $(".accordion")
 
   function renderEvent ( event ) {
+
+    let id = event.id
     let title = event.title
     let venue = event.venue_name
     let date_time = new Date(event.start_time)
@@ -49,7 +50,22 @@ function renderEvents(data){
     let event_time = date_time.toTimeString().split(' ')[0]
     let city_name = event.city_name
     let url = event.url
-    eventList.append(`<div class='ba b--dotted bw2 event'><ul class='collection-item'><li>Title: ${title}</li><li>Venue: ${venue}</li><li>Time: ${calendar_day} ${event_time}</li><li>City: ${city_name}</li><li><a href=${url} target="_blank">Link to Event</a></li></ul></div>`)
-  }
+
+    eventList.append(`
+            <div class="accordion-item" data-accordion-item>
+              <a href="#${id}" role="tab" id="${id}-heading" aria-controls="${id}" class="accordion-title">${title}</a>
+              <div id="${id}" role="tabpanel" aria-labelledby="${id}-heading" class="accordion-content" data-tab-content>
+                <p><h5>Venue:</h5> ${venue}</p>
+                <p><h5>When:</h5> ${calendar_day} ${event_time}</p>
+                <p><h5>Where:<h5> ${city_name}</p>
+                <a href=${url}>Link to Event</a>
+              </div>
+            </div>`)
+    }
+
   JSON.parse(data).events.event.forEach(renderEvent)
+
+  //check to for new elements to initialize foundation plug-ins
+  $(document).foundation()
+
 }

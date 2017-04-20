@@ -1,7 +1,10 @@
-div li {
-  list-style-type: none;
+body {
+  background-image: url("http://cms.sbcounty.gov/portals/1/Prado/Duck_by_lake.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.event {
-  margin-top: 10px;
+.padding {
+  margin-top: 25px;
 }

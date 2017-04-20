@@ -4,20 +4,22 @@
   <head>
     <meta charset="utf-8">
     <title>Button</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous">
-    </script>
-    <script type="text/javascript" src="api.js"></script>
-    <script type="text/javascript" src="./javascript/main.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css" />
     <link rel="stylesheet" href="./stylesheets/application.css"/>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js"></script>
+    <script type="text/javascript" src="api.js"></script>
+    <script type="text/javascript" src="./javascript/main.js"></script>
   </head>
 
   <body>
+    <div class="padding"></div>
     <div class="row">
       <div class="small-6 large-centered columns events-list">
-        <button type="button" class="hollow button large" id="click-me">Events Near Me</button>
+        <button type="button" class="warning button large" id="click-me">Events Near Me</button>
+        <div class="accordion" role="tablist" data-accordion  data-multi-expand="true" data-allow-all-closed="true">
+        </div>
       </div>
     </div>
   </body>
