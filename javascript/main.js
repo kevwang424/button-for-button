@@ -37,9 +37,11 @@ function getCoordsAndEvents(data){
 //find events and render
 function parseEvents(data){
 
+  $(".accordion").remove()
+
+  $(".events-list").append(`<div class="accordion" role="tablist" data-accordion  data-multi-expand="true" data-allow-all-closed="true">`)
   let eventList = $(".accordion")
   let $button = $("#click-me")
-  $(".accordion-item").remove()
 
   function renderEvent ( event ) {
 
@@ -67,7 +69,7 @@ function parseEvents(data){
   JSON.parse(data).events.event.forEach(renderEvent)
 
   //check to for new elements to initialize foundation plug-ins
-  $(document).foundation();
+  $(document).foundation()
   $button.text("Gimme More")
   $button.css({"margin-top": "20px"})
 
