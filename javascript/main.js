@@ -5,7 +5,6 @@ function handleClick() {
   let $button = $("#click-me")
 
   $button.click(function(){
-    $button.hide()
     getLocation()
   })
 }
@@ -39,6 +38,8 @@ function getCoordsAndEvents(data){
 function parseEvents(data){
 
   let eventList = $(".accordion")
+  let $button = $("#click-me")
+  $(".accordion-item").remove()
 
   function renderEvent ( event ) {
 
@@ -66,6 +67,9 @@ function parseEvents(data){
   JSON.parse(data).events.event.forEach(renderEvent)
 
   //check to for new elements to initialize foundation plug-ins
-  $(document).foundation()
+  $(document).foundation();
+  $button.text("Gimme More")
+  $button.css({"margin-top": "20px"})
+
 
 }
