@@ -2,7 +2,7 @@
 
 Don't know what you want to do this week? We don't know either so less pressure for us. (*whew*) 
 
-Simple single web page that has button that can find all events within 10 miles of the users location that is happening within the next week. Ten random results appear with information on time, place and as well as a link to the event in question. Not satisfied? Click the button again to get another random ten results. Good luck and may the odds be ever in your favor! 
+This is a simple single web page that has button that can find all events within 10 miles of the users location that is happening within the next week. Ten random results appear with information on time, place and as well as a link to the event in question. Not satisfied? Click the button again to get another random ten results. Good luck and may the odds be ever in your favor! 
 
 ### Tools
 - Foundation 
