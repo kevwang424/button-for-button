@@ -2,25 +2,70 @@ $(handleClick)
 
 //define buttonHandler
 function handleClick() {
-  var $button = $("#click-me")
-  $button.click(function(position){
+  let $button = $("#click-me")
+
+  $button.click(function(){
     $button.hide()
-    findAndRenderEvents(position)
+    getLocation()
   })
 }
 
-//search events by location of the user
-function findAndRenderEvents(position){
-  const URL = "http://api.eventful.com/rest/events/search?...&where=32.746682,-117.162741"
-  const auth = "&within=25&date=Future\&app_key="
-  debugger
-  findLocation()
-}
 
-//search users locations
-function findLocation(){
+//search the users locations
+function getLocation(){
   const URL = "https://www.googleapis.com/geolocation/v1/geolocate?key="
-  
+  $.ajax({
+    type: "POST",
+    url: `${URL}${apiKeys.google_geolocation_api_key}`,
+    success: getCoordsAndEvents
+  });
 }
 
-// http://api.eventful.com/rest/events/search?...&where=32.746682,-117.162741&within=25&date=Future\&app_key=cmMZxgb87BQPf3cQ
+//uses the coordinates to interpolate into the eventful
+function getCoordsAndEvents(data){
+  let lat = data.location.lat
+  let lng = data.location.lng
+
+  const URL = "https://api.eventful.com/json/events/search?...&where="
+  const CRITERIA = "&within=5&date=Future\&app_key="
+
+  $.ajax({
+    url: `${URL}${lat},${lng}${CRITERIA}${apiKeys.eventful_api_key}`,
+    success: parseEvents
+  })
+}
+
+//find events and render
+function parseEvents(data){
+
+  let eventList = $(".accordion")
+
+  function renderEvent ( event ) {
+
+    let id = event.id
+    let title = event.title
+    let venue = event.venue_name
+    let date_time = new Date(event.start_time)
+    let calendar_day = date_time.toDateString()
+    let event_time = date_time.toTimeString().split(' ')[0]
+    let city_name = event.city_name
+    let url = event.url
+
+    eventList.append(`
+      <div class="accordion-item" data-accordion-item>
+        <a href="#${id}" role="tab" id="${id}-heading" aria-controls="${id}" class="accordion-title">${title}</a>
+        <div id="${id}" role="tabpanel" aria-labelledby="${id}-heading" class="accordion-content" data-tab-content>
+          <h5>Venue:</h5> ${venue}
+          <h5>When:</h5> ${calendar_day} ${event_time}
+          <h5>Where:</h5> ${city_name}<br/>
+          <a href=${url}>See More Details</a>
+        </div>
+      </div>`)
+    }
+
+  JSON.parse(data).events.event.forEach(renderEvent)
+
+  //check to for new elements to initialize foundation plug-ins
+  $(document).foundation()
+
+}
