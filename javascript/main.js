@@ -52,15 +52,15 @@ function parseEvents(data){
     let url = event.url
 
     eventList.append(`
-            <div class="accordion-item" data-accordion-item>
-              <a href="#${id}" role="tab" id="${id}-heading" aria-controls="${id}" class="accordion-title">${title}</a>
-              <div id="${id}" role="tabpanel" aria-labelledby="${id}-heading" class="accordion-content" data-tab-content>
-                <p><h5>Venue:</h5> ${venue}</p>
-                <p><h5>When:</h5> ${calendar_day} ${event_time}</p>
-                <p><h5>Where:<h5> ${city_name}</p>
-                <a href=${url}>Link to Event</a>
-              </div>
-            </div>`)
+      <div class="accordion-item" data-accordion-item>
+        <a href="#${id}" role="tab" id="${id}-heading" aria-controls="${id}" class="accordion-title">${title}</a>
+        <div id="${id}" role="tabpanel" aria-labelledby="${id}-heading" class="accordion-content" data-tab-content>
+          <h5>Venue:</h5> ${venue}
+          <h5>When:</h5> ${calendar_day} ${event_time}
+          <h5>Where:</h5> ${city_name}<br/>
+          <a href=${url}>See More Details</a>
+        </div>
+      </div>`)
     }
 
   JSON.parse(data).events.event.forEach(renderEvent)
