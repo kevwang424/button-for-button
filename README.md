@@ -10,7 +10,7 @@ Simple single web page that has button that can find all events within 10 miles 
 - Google geolocation API
 - Eventful API
 
-#### Three Sentences
+# Three Sentences
 I am an expert at gathering information; sit me in front of users and business people and I can gather requirements and create a functional document that the developers can use to write their technical document and design the feature. While working on projects I came to the conclusion that I am not the greatest frontend designer; my professional experiences required me to use logic to troubleshoot, query databases, and etc, so I am much more comfortable with dealing with logic in the backend. My ideal project would be one where I would have the ability to split my time working  half in the backend and half on the frontend, it does not matter what the product is as long as I can do that.
 
 # WHY??
