@@ -13,9 +13,11 @@ function handleClick() {
 //search the users locations
 function getLocation(){
   const URL = "https://www.googleapis.com/geolocation/v1/geolocate?key="
+  const GOOGLEAPI = apiKeys.googleGeolocationApiKey
+
   $.ajax({
     type: "POST",
-    url: `${URL}${apiKeys.google_geolocation_api_key}`,
+    url: `${URL}${GOOGLEAPI}`,
     success: getCoordsAndEvents
   });
 }
@@ -27,9 +29,10 @@ function getCoordsAndEvents(data){
 
   const URL = "https://api.eventful.com/json/events/search?...&where="
   const CRITERIA = "&within=5&date=Future\&app_key="
+  const EVENTFULAPI = apiKeys.eventfulApiKey
 
   $.ajax({
-    url: `${URL}${lat},${lng}${CRITERIA}${apiKeys.eventful_api_key}`,
+    url: `${URL}${lat},${lng}${CRITERIA}${EVENTFULAPI}`,
     success: parseEvents
   })
 }
