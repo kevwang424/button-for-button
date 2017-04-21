@@ -18,9 +18,6 @@ function getLocation(){
   $.ajax({
     type: "POST",
     url: `${URL}${GOOGLEAPI}`,
-    xhrFields: {
-      withCredentials: true
-    },
     success: getCoordsAndEvents
   });
 }
@@ -36,16 +33,13 @@ function getCoordsAndEvents(data){
 
   $.ajax({
     url: `${URL}${lat},${lng}${CRITERIA}${EVENTFULAPI}`,
-    xhrFields: {
-      withCredentials: true
-    },
+    dataType: "jsonp",
     success: parseEvents
   })
 }
 
 //find events and render
 function parseEvents(data){
-
   $(".accordion").remove()
 
   $(".events-list").append(`<div class="accordion" role="tablist" data-accordion  data-multi-expand="true" data-allow-all-closed="true">`)
@@ -75,7 +69,7 @@ function parseEvents(data){
       </div>`)
     }
 
-  JSON.parse(data).events.event.forEach(renderEvent)
+    data.events.event.forEach(renderEvent)
 
   //check to for new elements to initialize foundation plug-ins
   $(document).foundation()
