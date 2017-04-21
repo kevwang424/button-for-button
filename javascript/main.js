@@ -18,6 +18,9 @@ function getLocation(){
   $.ajax({
     type: "POST",
     url: `${URL}${GOOGLEAPI}`,
+    xhrFields: {
+      withCredentials: true
+    },
     success: getCoordsAndEvents
   });
 }
@@ -33,6 +36,9 @@ function getCoordsAndEvents(data){
 
   $.ajax({
     url: `${URL}${lat},${lng}${CRITERIA}${EVENTFULAPI}`,
+    xhrFields: {
+      withCredentials: true
+    },
     success: parseEvents
   })
 }
