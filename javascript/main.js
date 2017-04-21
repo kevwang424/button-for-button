@@ -28,7 +28,7 @@ function getCoordsAndEvents(data){
   let lng = data.location.lng
 
   const URL = "https://api.eventful.com/json/events/search?...&where="
-  const CRITERIA = "&within=5&date=Future\&app_key="
+  const CRITERIA = "&within=10&date=Future\&app_key="
   const EVENTFULAPI = "cmMZxgb87BQPf3cQ"
 
   $.ajax({
